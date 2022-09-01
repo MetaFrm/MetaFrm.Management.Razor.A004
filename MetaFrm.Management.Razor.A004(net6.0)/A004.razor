@@ -1,0 +1,228 @@
+﻿@using MetaFrm.Control
+@using MetaFrm.Management.Razor.Models
+@using MetaFrm.Razor.Command
+@using MetaFrm.Razor.DataGrid
+@using MetaFrm.Razor.Dictionary
+@using MetaFrm.Razor.Field
+@using MetaFrm.Razor.Group
+@using MetaFrm.Razor.Search
+@using MetaFrm.Razor.Title
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Web
+@inherits BaseComponent
+
+<div>
+    <TitleControl Title="@this.GetAttribute("Description")"></TitleControl>
+
+    @if (this.GroupWindowStatus == GroupWindowStatus.Close)
+    {
+        <DataGridControl TItem="CommonClassModel" @ref="this.DataGridControl" Columns="this.ColumnDefinitions" DataItems="this.A004ViewModel.SelectResultModel" PagingEnabled="true"
+                     TableClass="table-hover"
+                     RowAdd="this.New"
+                     MovePage="this.Search"
+                     RowModify="this.RowModify">
+            <SearchInputControl>
+                <input type="text" class="form-control rounded-start" placeholder="Search" @bind-value="@this.A004ViewModel.SearchModel.SEARCH_TEXT" @onkeyup="@SearchKeydown" />
+            </SearchInputControl>
+            <SearchButtonControl>
+                <button class="btn btn-outline-primary btn-rounded-end" type="button" @onclick="(() => this.OnSearch())">
+                    <span class="oi oi-magnifying-glass" />
+                </button>
+            </SearchButtonControl>
+        </DataGridControl>
+    }
+    else
+    {
+        <GroupControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_VALUE_ID))"
+                  Close="this.Close" GroupWindowStatus="this.GroupWindowStatus">
+            <Control>
+                <EditForm class="container" Model="@this.SelectItem" OnValidSubmit="this.Save">
+                    <DataAnnotationsValidator />
+                    
+                    <div class="row">
+                        <FieldControl Label="Value ID" CssClassDiv="py-2 col-md-6" Value="this.SelectItem.CLASS_VALUE_ID"></FieldControl>
+                        <FieldControl Label="Class ID" CssClassDiv="py-2 col-md-6" Value="this.SelectItem.CLASS_ID"></FieldControl>
+                    </div>
+
+                    @if (this.SelectItem.CLASS_ID != null && !this.SelectItem.CLASS_NAME.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="Class name" Value="this.SelectItem.CLASS_NAME"></FieldControl>
+                    }
+                    else
+                    {
+                        <FieldControl Label="Class name">
+                            <Control>
+                                <InputSelect class="form-select" Value="@this.SelectItem.CLASS_ID" ValueExpression="@(() => this.SelectItem.CLASS_ID)" ValueChanged="((int? value) => this.SearchCommonClass(value))">
+                                    <DictionaryControl Code="METAFRM_MGMT.COMMON_CLASS" Items="this.CommonClassItems" ResultEvent="this.OnResultEventCommonClassItems" AppendEmptyItem="true">
+                                        <Control>
+                                            @if (this.CommonClassItems != null)
+                                                foreach (var item in this.CommonClassItems)
+                                                {
+                                                    <option Value="@(item.Int("CLASS_ID"))">@item.String("CLASS_NAME")</option>
+                                                }
+                                        </Control>
+                                    </DictionaryControl>
+                                </InputSelect>
+                                <ValidationMessage For="@(()=>this.SelectItem.CLASS_ID)" />
+                            </Control>
+                        </FieldControl>
+                    }
+
+
+                    @if (this.SelectItem.CLASS_ID != null)
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.KEY_VALUE_DESC}")">
+                            <Control>
+                                <InputText id="keyname" class="form-control" placeholder="@this.SelectItem.KEY_VALUE_DESC" @bind-Value="this.SelectItem.KEY_VALUE" />
+                                <ValidationMessage For="@(()=>this.SelectItem.KEY_VALUE)" />
+                            </Control>
+                        </FieldControl>
+                    }
+                    @if (!this.SelectItem.TEXT_VALUE1_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.TEXT_VALUE1_DESC}")"><Control><InputText id="textvalue1" class="form-control" placeholder="@this.SelectItem.TEXT_VALUE1_DESC" @bind-Value="this.SelectItem.TEXT_VALUE1" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE1)" /></Control></FieldControl>
+                    }
+                    @if (!this.SelectItem.TEXT_VALUE2_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.TEXT_VALUE2_DESC}")"><Control><InputText id="textvalue2" class="form-control" placeholder="@this.SelectItem.TEXT_VALUE2_DESC" @bind-Value="this.SelectItem.TEXT_VALUE2" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE2)" /></Control></FieldControl>
+                    }
+                    @if (!this.SelectItem.TEXT_VALUE3_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.TEXT_VALUE3_DESC}")"><Control><InputText id="textvalue3" class="form-control" placeholder="@this.SelectItem.TEXT_VALUE3_DESC" @bind-Value="this.SelectItem.TEXT_VALUE3" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE3)" /></Control></FieldControl>
+                    }
+                    @if (!this.SelectItem.TEXT_VALUE4_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.TEXT_VALUE4_DESC}")"><Control><InputText id="textvalue4" class="form-control" placeholder="@this.SelectItem.TEXT_VALUE4_DESC" @bind-Value="this.SelectItem.TEXT_VALUE4" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE4)" /></Control></FieldControl>
+                    }
+                    @if (!this.SelectItem.TEXT_VALUE5_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.TEXT_VALUE5_DESC}")"><Control><InputText id="textvalue5" class="form-control" placeholder="@this.SelectItem.TEXT_VALUE5_DESC" @bind-Value="this.SelectItem.TEXT_VALUE5" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE5)" /></Control></FieldControl>
+                    }
+                    @if (!this.SelectItem.TEXT_VALUE6_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.TEXT_VALUE6_DESC}")"><Control><InputText id="textvalue6" class="form-control" placeholder="@this.SelectItem.TEXT_VALUE6_DESC" @bind-Value="this.SelectItem.TEXT_VALUE6" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE6)" /></Control></FieldControl>
+                    }
+                    @if (!this.SelectItem.TEXT_VALUE7_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.TEXT_VALUE7_DESC}")"><Control><InputText id="textvalue7" class="form-control" placeholder="@this.SelectItem.TEXT_VALUE7_DESC" @bind-Value="this.SelectItem.TEXT_VALUE7" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE7)" /></Control></FieldControl>
+                    }
+                    @if (!this.SelectItem.TEXT_VALUE8_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.TEXT_VALUE8_DESC}")"><Control><InputText id="textvalue8" class="form-control" placeholder="@this.SelectItem.TEXT_VALUE8_DESC" @bind-Value="this.SelectItem.TEXT_VALUE8" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE8)" /></Control></FieldControl>
+                    }
+                    @if (!this.SelectItem.TEXT_VALUE9_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.TEXT_VALUE9_DESC}")"><Control><InputText id="textvalue9" class="form-control" placeholder="@this.SelectItem.TEXT_VALUE9_DESC" @bind-Value="this.SelectItem.TEXT_VALUE9" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE9)" /></Control></FieldControl>
+                    }
+                    @if (!this.SelectItem.TEXT_VALUE10_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.TEXT_VALUE10_DESC}")"><Control><InputText id="textvalue10" class="form-control" placeholder="@this.SelectItem.TEXT_VALUE10_DESC" @bind-Value="this.SelectItem.TEXT_VALUE10" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE10)" /></Control></FieldControl>
+                    }
+
+                    @if (!this.SelectItem.INT_VALUE1_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.INT_VALUE1_DESC}")"><Control><InputNumber id="intvalue1" class="form-control" placeholder="@this.SelectItem.INT_VALUE1_DESC" @bind-Value="this.SelectItem.INT_VALUE1" /><ValidationMessage For="@(()=>this.SelectItem.INT_VALUE1)" /></Control></FieldControl>
+                    }
+                    @if (!this.SelectItem.INT_VALUE2_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.INT_VALUE2_DESC}")"><Control><InputNumber id="intvalue2" class="form-control" placeholder="@this.SelectItem.INT_VALUE2_DESC" @bind-Value="this.SelectItem.INT_VALUE2" /><ValidationMessage For="@(()=>this.SelectItem.INT_VALUE2)" /></Control></FieldControl>
+                    }
+                    @if (!this.SelectItem.INT_VALUE3_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.INT_VALUE3_DESC}")"><Control><InputNumber id="intvalue3" class="form-control" placeholder="@this.SelectItem.INT_VALUE3_DESC" @bind-Value="this.SelectItem.INT_VALUE3" /><ValidationMessage For="@(()=>this.SelectItem.INT_VALUE3)" /></Control></FieldControl>
+                    }
+                    @if (!this.SelectItem.INT_VALUE4_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.INT_VALUE4_DESC}")"><Control><InputNumber id="intvalue4" class="form-control" placeholder="@this.SelectItem.INT_VALUE4_DESC" @bind-Value="this.SelectItem.INT_VALUE4" /><ValidationMessage For="@(()=>this.SelectItem.INT_VALUE4)" /></Control></FieldControl>
+                    }
+                    @if (!this.SelectItem.INT_VALUE5_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.INT_VALUE5_DESC}")"><Control><InputNumber id="intvalue5" class="form-control" placeholder="@this.SelectItem.INT_VALUE5_DESC" @bind-Value="this.SelectItem.INT_VALUE5" /><ValidationMessage For="@(()=>this.SelectItem.INT_VALUE5)" /></Control></FieldControl>
+                    }
+
+                    @if (!this.SelectItem.NUMBER_VALUE1_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.NUMBER_VALUE1_DESC}")"><Control><InputNumber id="numbervalue1" class="form-control" placeholder="@this.SelectItem.NUMBER_VALUE1_DESC" @bind-Value="this.SelectItem.NUMBER_VALUE1" /><ValidationMessage For="@(()=>this.SelectItem.NUMBER_VALUE1)" /></Control></FieldControl>
+                    }
+                    @if (!this.SelectItem.NUMBER_VALUE2_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.NUMBER_VALUE2_DESC}")"><Control><InputNumber id="numbervalue2" class="form-control" placeholder="@this.SelectItem.NUMBER_VALUE2_DESC" @bind-Value="this.SelectItem.NUMBER_VALUE2" /><ValidationMessage For="@(()=>this.SelectItem.NUMBER_VALUE2)" /></Control></FieldControl>
+                    }
+                    @if (!this.SelectItem.NUMBER_VALUE3_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.NUMBER_VALUE3_DESC}")"><Control><InputNumber id="numbervalue3" class="form-control" placeholder="@this.SelectItem.NUMBER_VALUE3_DESC" @bind-Value="this.SelectItem.NUMBER_VALUE3" /><ValidationMessage For="@(()=>this.SelectItem.NUMBER_VALUE3)" /></Control></FieldControl>
+                    }
+                    @if (!this.SelectItem.NUMBER_VALUE4_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.NUMBER_VALUE4_DESC}")"><Control><InputNumber id="numbervalue4" class="form-control" placeholder="@this.SelectItem.NUMBER_VALUE4_DESC" @bind-Value="this.SelectItem.NUMBER_VALUE4" /><ValidationMessage For="@(()=>this.SelectItem.NUMBER_VALUE4)" /></Control></FieldControl>
+                    }
+                    @if (!this.SelectItem.NUMBER_VALUE5_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.NUMBER_VALUE5_DESC}")"><Control><InputNumber id="numbervalue5" class="form-control" placeholder="@this.SelectItem.NUMBER_VALUE5_DESC" @bind-Value="this.SelectItem.NUMBER_VALUE5" /><ValidationMessage For="@(()=>this.SelectItem.NUMBER_VALUE5)" /></Control></FieldControl>
+                    }
+
+                    @if (!this.SelectItem.DATETIME_VALUE1_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.DATETIME_VALUE1_DESC}")">
+                            <Control>
+                                <InputDate id="datevalue1" class="form-control w-40 float-start" placeholder="@this.SelectItem.DATETIME_VALUE1_DESC" Type="InputDateType.Date" @bind-Value="this.SelectItem.DATETIME_VALUE1" />
+                                <InputDate id="timevalue1" class="form-control w-40 float-start ms-1" placeholder="@this.SelectItem.DATETIME_VALUE1_DESC" Type="InputDateType.Time" @bind-Value="this.SelectItem.DATETIME_VALUE1" />
+                                <ValidationMessage For="@(()=>this.SelectItem.DATETIME_VALUE1)" />
+                            </Control>
+                        </FieldControl>
+                    }
+                    @if (!this.SelectItem.DATETIME_VALUE2_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.DATETIME_VALUE2_DESC}")">
+                            <Control>
+                                <InputDate id="datevalue2" class="form-control w-40 float-start" placeholder="@this.SelectItem.DATETIME_VALUE2_DESC" Type="InputDateType.Date" @bind-Value="this.SelectItem.DATETIME_VALUE2" />
+                                <InputDate id="timevalue2" class="form-control w-40 float-start ms-1" placeholder="@this.SelectItem.DATETIME_VALUE2_DESC" Type="InputDateType.Time" @bind-Value="this.SelectItem.DATETIME_VALUE2" />
+                                <ValidationMessage For="@(()=>this.SelectItem.DATETIME_VALUE2)" />
+                            </Control>
+                        </FieldControl>
+                    }
+                    @if (!this.SelectItem.DATETIME_VALUE3_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.DATETIME_VALUE3_DESC}")">
+                            <Control>
+                                <InputDate id="datevalue3" class="form-control w-40 float-start" placeholder="@this.SelectItem.DATETIME_VALUE3_DESC" Type="InputDateType.Date" @bind-Value="this.SelectItem.DATETIME_VALUE3" />
+                                <InputDate id="timevalue3" class="form-control w-40 float-start ms-1" placeholder="@this.SelectItem.DATETIME_VALUE3_DESC" Type="InputDateType.Time" @bind-Value="this.SelectItem.DATETIME_VALUE3" />
+                                <ValidationMessage For="@(()=>this.SelectItem.DATETIME_VALUE3)" />
+                            </Control>
+                        </FieldControl>
+                    }
+                    @if (!this.SelectItem.DATETIME_VALUE4_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.DATETIME_VALUE4_DESC}")">
+                            <Control>
+                                <InputDate id="datevalue4" class="form-control w-40 float-start" placeholder="@this.SelectItem.DATETIME_VALUE4_DESC" Type="InputDateType.Date" @bind-Value="this.SelectItem.DATETIME_VALUE4" />
+                                <InputDate id="timevalue4" class="form-control w-40 float-start ms-1" placeholder="@this.SelectItem.DATETIME_VALUE4_DESC" Type="InputDateType.Time" @bind-Value="this.SelectItem.DATETIME_VALUE4" />
+                                <ValidationMessage For="@(()=>this.SelectItem.DATETIME_VALUE4)" />
+                            </Control>
+                        </FieldControl>
+                    }
+                    @if (!this.SelectItem.DATETIME_VALUE5_DESC.IsNullOrEmpty())
+                    {
+                        <FieldControl Label="@($"{this.SelectItem.DATETIME_VALUE5_DESC}")">
+                            <Control>
+                                <InputDate id="datevalue5" class="form-control w-40 float-start" placeholder="@this.SelectItem.DATETIME_VALUE5_DESC" Type="InputDateType.Date" @bind-Value="this.SelectItem.DATETIME_VALUE5" />
+                                <InputDate id="timevalue5" class="form-control w-40 float-start ms-1" placeholder="@this.SelectItem.DATETIME_VALUE5_DESC" Type="InputDateType.Time" @bind-Value="this.SelectItem.DATETIME_VALUE5" />
+                                <ValidationMessage For="@(()=>this.SelectItem.DATETIME_VALUE5)" />
+                            </Control>
+                        </FieldControl>
+                    }
+
+                    @if (this.SelectItem.CLASS_ID != null)
+                    {
+                        <div class="row">
+                            <FieldControl Label="Sort" CssClassDiv="py-2 col-md-3"><Control><InputNumber id="sort" class="form-control" placeholder="Sort" @bind-Value="this.SelectItem.SORT" /><ValidationMessage For="@(()=>this.SelectItem.SORT)" /></Control></FieldControl>
+                            <FieldControl Label="Inactive" CssClassDiv="py-2 col-md-3" Value="@($"{this.SelectItem.INACTIVE_DATE:yyyy-MM-dd HH:mm}")"></FieldControl>
+                        </div>
+                    }
+
+                    <CommandControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_ID))" SaveIsSubmit="true" New="this.New" Copy="this.Copy" Delete="this.Delete" />
+                </EditForm>
+            </Control>
+        </GroupControl>
+    }
+</div>
