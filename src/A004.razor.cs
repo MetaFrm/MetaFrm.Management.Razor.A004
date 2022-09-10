@@ -25,8 +25,6 @@ namespace MetaFrm.Management.Razor
         internal IEnumerable<Data.DataRow>? CommonClassItems;
 
         internal CommonClassModel SelectItem = new();
-
-        internal GroupWindowStatus GroupWindowStatus = GroupWindowStatus.Close;
         #endregion
 
 
@@ -76,9 +74,7 @@ namespace MetaFrm.Management.Razor
         #region IO
         private void New()
         {
-            if (this.SelectItem.CLASS_VALUE_ID != null || this.GroupWindowStatus != GroupWindowStatus.Close)
-                this.SelectItem = new();
-            this.GroupWindowStatus = GroupWindowStatus.Maximize;
+            this.SelectItem = new();
         }
 
         private void OnSearch()
@@ -429,7 +425,6 @@ namespace MetaFrm.Management.Razor
                 if (response.Status == Status.OK)
                 {
                     this.New();
-                    this.Close();
                     this.ToastShow("Completed", $"{this.GetAttribute("Title")} deleted successfully.", Alert.ToastDuration.Long);
                 }
                 else
@@ -531,8 +526,6 @@ namespace MetaFrm.Management.Razor
                 DATETIME_VALUE4_DESC = item.DATETIME_VALUE4_DESC,
                 DATETIME_VALUE5_DESC = item.DATETIME_VALUE5_DESC,
             };
-
-            this.GroupWindowStatus = GroupWindowStatus.Maximize;
         }
 
         private void Copy()
@@ -543,10 +536,6 @@ namespace MetaFrm.Management.Razor
                 this.SelectItem.KEY_VALUE = null;
                 this.SelectItem.SORT = null;
             }
-        }
-        private void Close()
-        {
-            this.GroupWindowStatus = GroupWindowStatus.Close;
         }
         #endregion
     }
