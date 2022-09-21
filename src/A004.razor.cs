@@ -295,7 +295,7 @@ namespace MetaFrm.Management.Razor
                     Token = this.UserClaim("Token")
                 };
                 serviceData["1"].CommandText = this.GetAttribute("Save");
-                serviceData["1"].AddParameter(nameof(this.SelectItem.CLASS_VALUE_ID), DbType.Int, 3, this.SelectItem.CLASS_VALUE_ID);
+                serviceData["1"].AddParameter(nameof(this.SelectItem.CLASS_VALUE_ID), DbType.Int, 3, "2", nameof(this.SelectItem.CLASS_VALUE_ID), this.SelectItem.CLASS_VALUE_ID);
                 serviceData["1"].AddParameter(nameof(this.SelectItem.CLASS_ID), DbType.Int, 3, this.SelectItem.CLASS_ID);
                 serviceData["1"].AddParameter(nameof(this.SelectItem.KEY_VALUE), DbType.NVarChar, 200, this.SelectItem.KEY_VALUE);
                 serviceData["1"].AddParameter(nameof(this.SelectItem.TEXT_VALUE1), DbType.NVarChar, 4000, this.SelectItem.TEXT_VALUE1);
@@ -330,12 +330,12 @@ namespace MetaFrm.Management.Razor
 
                 if (response.Status == Status.OK)
                 {
-                    if (response.DataSet != null && response.DataSet.DataTables.Count > 2 && response.DataSet.DataTables[2].DataRows.Count > 0 && this.SelectItem != null && this.SelectItem.CLASS_ID == null)
+                    if (response.DataSet != null && response.DataSet.DataTables.Count > 0 && response.DataSet.DataTables[0].DataRows.Count > 0 && this.SelectItem != null && this.SelectItem.CLASS_VALUE_ID == null)
                     {
-                        value = response.DataSet.DataTables[2].DataRows[0].String("Value");
+                        value = response.DataSet.DataTables[0].DataRows[0].String("Value");
 
                         if (value != null)
-                            this.SelectItem.CLASS_ID = value.ToInt();
+                            this.SelectItem.CLASS_VALUE_ID = value.ToInt();
                     }
 
                     this.ToastShow("Completed", $"{this.GetAttribute("Title")} registered successfully.", Alert.ToastDuration.Long);
