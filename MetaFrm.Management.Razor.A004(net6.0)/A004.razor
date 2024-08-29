@@ -17,7 +17,7 @@
                     new(DbType.Int, SortDirection.Normal, Alignment.Right, nameof(CommonClassModel.CLASS_ID), "클래스 ID", "d-none d-lg-table-cell"),
                     new(DbType.NVarChar, SortDirection.Ascending, nameof(CommonClassModel.CLASS_NAME), "클래스명"),
                     new(DbType.NVarChar, SortDirection.Normal, nameof(CommonClassModel.KEY_VALUE), "키 값"),
-                    new(DbType.Int, SortDirection.Normal, nameof(CommonClassModel.SORT), "Sorting", "d-none d-sm-table-cell"),
+                    new(DbType.Int, SortDirection.Normal, nameof(CommonClassModel.SORT), "정렬", "d-none d-sm-table-cell"),
                     new(DbType.DateTime, SortDirection.Normal, Alignment.Center, nameof(CommonClassModel.INACTIVE_DATE), "비활성", "d-none d-sm-table-cell", "", "", "yyyy-MM-dd HH:mm")})">
     <SearchInputControl>
         <input type="text" class="form-control rounded-start" placeholder="@Localization["검색"]" @bind-value="@this.A004ViewModel.SearchModel.SEARCH_TEXT" @onkeyup="@SearchKeydown" />
@@ -29,7 +29,7 @@
     </SearchButtonControl>
 </DataGridControl>
 
-<ModalControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_VALUE_ID))" HeaderText="@(this.SelectItem == null || this.SelectItem.CLASS_ID == null ? "New" : "Edit")">
+<ModalControl TItem="CommonClassModel" SelectItem="this.SelectItem" SelectItemKeyProperty="@(nameof(this.SelectItem.CLASS_VALUE_ID))" HeaderText="@(this.SelectItem == null || this.SelectItem.CLASS_ID == null ? "신규" : "수정")">
     <Control>
         <EditForm class="container" Model="@this.SelectItem" OnValidSubmit="this.Save">
             <DataAnnotationsValidator />
