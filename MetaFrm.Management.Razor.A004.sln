@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.4.32804.182
+# Visual Studio Version 18
+VisualStudioVersion = 18.1.11304.174 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{23C705D6-1754-465E-8DD2-BC288EAB27B8}"
 	ProjectSection(SolutionItems) = preProject
@@ -19,8 +19,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ViewModels", "ViewModels", 
 		src\ViewModels\A004ViewModel.cs = src\ViewModels\A004ViewModel.cs
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetaFrm.Management.Razor.A004(net6.0)", "MetaFrm.Management.Razor.A004(net6.0)\MetaFrm.Management.Razor.A004(net6.0).csproj", "{1AB9D9D9-B7CE-44D7-8F1E-B2AE5E6FF9A9}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{B1470676-26C0-4C16-86F8-9A465E79CD45}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{81011329-01C9-4308-8DD5-B1E2E84BC966}"
@@ -35,16 +33,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "솔루션 항목", "솔루�
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetaFrm.Management.Razor.A004(net10.0)", "MetaFrm.Management.Razor.A004(net10.0)\MetaFrm.Management.Razor.A004(net10.0).csproj", "{041D19C6-5BF4-CAF7-011B-DF6AC37F6CDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1AB9D9D9-B7CE-44D7-8F1E-B2AE5E6FF9A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1AB9D9D9-B7CE-44D7-8F1E-B2AE5E6FF9A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1AB9D9D9-B7CE-44D7-8F1E-B2AE5E6FF9A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1AB9D9D9-B7CE-44D7-8F1E-B2AE5E6FF9A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{041D19C6-5BF4-CAF7-011B-DF6AC37F6CDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{041D19C6-5BF4-CAF7-011B-DF6AC37F6CDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{041D19C6-5BF4-CAF7-011B-DF6AC37F6CDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{041D19C6-5BF4-CAF7-011B-DF6AC37F6CDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
