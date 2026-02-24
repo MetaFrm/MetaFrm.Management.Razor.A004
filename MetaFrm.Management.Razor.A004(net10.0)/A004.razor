@@ -41,7 +41,7 @@
                     <FieldControl Label="클래스 ID" Value="this.SelectItem.CLASS_ID"></FieldControl>
                 </div>
 
-                @if (this.SelectItem.CLASS_ID != null && !this.SelectItem.CLASS_NAME.IsNullOrEmpty())
+                @if (this.SelectItem.CLASS_ID != null && !string.IsNullOrEmpty(this.SelectItem.CLASS_NAME))
                 {
                     <FieldControl Label="클래스명" CssClassAppend="py-2 col-md-12" Value="this.SelectItem.CLASS_NAME"></FieldControl>
                 }
@@ -75,90 +75,90 @@
                         </Control>
                     </FieldControl>
                 }
-                @if (!this.SelectItem.TEXT_VALUE1_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.TEXT_VALUE1_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.TEXT_VALUE1_DESC}")" CssClassAppend="py-2 col-md-12"><Control><InputText id="textvalue1" class="form-control" placeholder="@this.SelectItem.TEXT_VALUE1_DESC" @bind-Value="this.SelectItem.TEXT_VALUE1" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE1)" /></Control></FieldControl>
                 }
-                @if (!this.SelectItem.TEXT_VALUE2_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.TEXT_VALUE2_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.TEXT_VALUE2_DESC}")" CssClassAppend="py-2 col-md-12"><Control><InputText id="textvalue2" class="form-control" placeholder="@this.SelectItem.TEXT_VALUE2_DESC" @bind-Value="this.SelectItem.TEXT_VALUE2" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE2)" /></Control></FieldControl>
                 }
-                @if (!this.SelectItem.TEXT_VALUE3_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.TEXT_VALUE3_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.TEXT_VALUE3_DESC}")" CssClassAppend="py-2 col-md-12"><Control><InputText id="textvalue3" class="form-control" placeholder="@this.SelectItem.TEXT_VALUE3_DESC" @bind-Value="this.SelectItem.TEXT_VALUE3" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE3)" /></Control></FieldControl>
                 }
-                @if (!this.SelectItem.TEXT_VALUE4_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.TEXT_VALUE4_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.TEXT_VALUE4_DESC}")" CssClassAppend="py-2 col-md-12"><Control><InputText id="textvalue4" class="form-control" placeholder="@this.SelectItem.TEXT_VALUE4_DESC" @bind-Value="this.SelectItem.TEXT_VALUE4" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE4)" /></Control></FieldControl>
                 }
-                @if (!this.SelectItem.TEXT_VALUE5_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.TEXT_VALUE5_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.TEXT_VALUE5_DESC}")" CssClassAppend="py-2 col-md-12"><Control><InputText id="textvalue5" class="form-control" placeholder="@this.SelectItem.TEXT_VALUE5_DESC" @bind-Value="this.SelectItem.TEXT_VALUE5" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE5)" /></Control></FieldControl>
                 }
-                @if (!this.SelectItem.TEXT_VALUE6_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.TEXT_VALUE6_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.TEXT_VALUE6_DESC}")" CssClassAppend="py-2 col-md-12"><Control><InputText id="textvalue6" class="form-control" placeholder="@this.SelectItem.TEXT_VALUE6_DESC" @bind-Value="this.SelectItem.TEXT_VALUE6" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE6)" /></Control></FieldControl>
                 }
-                @if (!this.SelectItem.TEXT_VALUE7_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.TEXT_VALUE7_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.TEXT_VALUE7_DESC}")" CssClassAppend="py-2 col-md-12"><Control><InputText id="textvalue7" class="form-control" placeholder="@this.SelectItem.TEXT_VALUE7_DESC" @bind-Value="this.SelectItem.TEXT_VALUE7" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE7)" /></Control></FieldControl>
                 }
-                @if (!this.SelectItem.TEXT_VALUE8_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.TEXT_VALUE8_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.TEXT_VALUE8_DESC}")" CssClassAppend="py-2 col-md-12"><Control><InputText id="textvalue8" class="form-control" placeholder="@this.SelectItem.TEXT_VALUE8_DESC" @bind-Value="this.SelectItem.TEXT_VALUE8" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE8)" /></Control></FieldControl>
                 }
-                @if (!this.SelectItem.TEXT_VALUE9_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.TEXT_VALUE9_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.TEXT_VALUE9_DESC}")" CssClassAppend="py-2 col-md-12"><Control><InputText id="textvalue9" class="form-control" placeholder="@this.SelectItem.TEXT_VALUE9_DESC" @bind-Value="this.SelectItem.TEXT_VALUE9" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE9)" /></Control></FieldControl>
                 }
-                @if (!this.SelectItem.TEXT_VALUE10_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.TEXT_VALUE10_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.TEXT_VALUE10_DESC}")" CssClassAppend="py-2 col-md-12"><Control><InputText id="textvalue10" class="form-control" placeholder="@this.SelectItem.TEXT_VALUE10_DESC" @bind-Value="this.SelectItem.TEXT_VALUE10" /><ValidationMessage For="@(()=>this.SelectItem.TEXT_VALUE10)" /></Control></FieldControl>
                 }
 
-                @if (!this.SelectItem.INT_VALUE1_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.INT_VALUE1_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.INT_VALUE1_DESC}")" CssClassAppend="py-2 col-md-12"><Control><InputNumber id="intvalue1" class="form-control" placeholder="@this.SelectItem.INT_VALUE1_DESC" @bind-Value="this.SelectItem.INT_VALUE1" /><ValidationMessage For="@(()=>this.SelectItem.INT_VALUE1)" /></Control></FieldControl>
                 }
-                @if (!this.SelectItem.INT_VALUE2_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.INT_VALUE2_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.INT_VALUE2_DESC}")" CssClassAppend="py-2 col-md-12"><Control><InputNumber id="intvalue2" class="form-control" placeholder="@this.SelectItem.INT_VALUE2_DESC" @bind-Value="this.SelectItem.INT_VALUE2" /><ValidationMessage For="@(()=>this.SelectItem.INT_VALUE2)" /></Control></FieldControl>
                 }
-                @if (!this.SelectItem.INT_VALUE3_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.INT_VALUE3_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.INT_VALUE3_DESC}")" CssClassAppend="py-2 col-md-12"><Control><InputNumber id="intvalue3" class="form-control" placeholder="@this.SelectItem.INT_VALUE3_DESC" @bind-Value="this.SelectItem.INT_VALUE3" /><ValidationMessage For="@(()=>this.SelectItem.INT_VALUE3)" /></Control></FieldControl>
                 }
-                @if (!this.SelectItem.INT_VALUE4_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.INT_VALUE4_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.INT_VALUE4_DESC}")" CssClassAppend="py-2 col-md-12"><Control><InputNumber id="intvalue4" class="form-control" placeholder="@this.SelectItem.INT_VALUE4_DESC" @bind-Value="this.SelectItem.INT_VALUE4" /><ValidationMessage For="@(()=>this.SelectItem.INT_VALUE4)" /></Control></FieldControl>
                 }
-                @if (!this.SelectItem.INT_VALUE5_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.INT_VALUE5_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.INT_VALUE5_DESC}")" CssClassAppend="py-2 col-md-12"><Control><InputNumber id="intvalue5" class="form-control" placeholder="@this.SelectItem.INT_VALUE5_DESC" @bind-Value="this.SelectItem.INT_VALUE5" /><ValidationMessage For="@(()=>this.SelectItem.INT_VALUE5)" /></Control></FieldControl>
                 }
 
-                @if (!this.SelectItem.NUMBER_VALUE1_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.NUMBER_VALUE1_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.NUMBER_VALUE1_DESC}")" CssClassAppend="py-2 col-md-12"><Control><InputNumber id="numbervalue1" class="form-control" placeholder="@this.SelectItem.NUMBER_VALUE1_DESC" @bind-Value="this.SelectItem.NUMBER_VALUE1" /><ValidationMessage For="@(()=>this.SelectItem.NUMBER_VALUE1)" /></Control></FieldControl>
                 }
-                @if (!this.SelectItem.NUMBER_VALUE2_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.NUMBER_VALUE2_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.NUMBER_VALUE2_DESC}")" CssClassAppend="py-2 col-md-12"><Control><InputNumber id="numbervalue2" class="form-control" placeholder="@this.SelectItem.NUMBER_VALUE2_DESC" @bind-Value="this.SelectItem.NUMBER_VALUE2" /><ValidationMessage For="@(()=>this.SelectItem.NUMBER_VALUE2)" /></Control></FieldControl>
                 }
-                @if (!this.SelectItem.NUMBER_VALUE3_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.NUMBER_VALUE3_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.NUMBER_VALUE3_DESC}")" CssClassAppend="py-2 col-md-12"><Control><InputNumber id="numbervalue3" class="form-control" placeholder="@this.SelectItem.NUMBER_VALUE3_DESC" @bind-Value="this.SelectItem.NUMBER_VALUE3" /><ValidationMessage For="@(()=>this.SelectItem.NUMBER_VALUE3)" /></Control></FieldControl>
                 }
-                @if (!this.SelectItem.NUMBER_VALUE4_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.NUMBER_VALUE4_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.NUMBER_VALUE4_DESC}")" CssClassAppend="py-2 col-md-12"><Control><InputNumber id="numbervalue4" class="form-control" placeholder="@this.SelectItem.NUMBER_VALUE4_DESC" @bind-Value="this.SelectItem.NUMBER_VALUE4" /><ValidationMessage For="@(()=>this.SelectItem.NUMBER_VALUE4)" /></Control></FieldControl>
                 }
-                @if (!this.SelectItem.NUMBER_VALUE5_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.NUMBER_VALUE5_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.NUMBER_VALUE5_DESC}")" CssClassAppend="py-2 col-md-12"><Control><InputNumber id="numbervalue5" class="form-control" placeholder="@this.SelectItem.NUMBER_VALUE5_DESC" @bind-Value="this.SelectItem.NUMBER_VALUE5" /><ValidationMessage For="@(()=>this.SelectItem.NUMBER_VALUE5)" /></Control></FieldControl>
                 }
 
-                @if (!this.SelectItem.DATETIME_VALUE1_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.DATETIME_VALUE1_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.DATETIME_VALUE1_DESC}")" CssClassAppend="py-2 col-md-12">
                         <Control>
@@ -168,7 +168,7 @@
                         </Control>
                     </FieldControl>
                 }
-                @if (!this.SelectItem.DATETIME_VALUE2_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.DATETIME_VALUE2_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.DATETIME_VALUE2_DESC}")" CssClassAppend="py-2 col-md-12">
                         <Control>
@@ -178,7 +178,7 @@
                         </Control>
                     </FieldControl>
                 }
-                @if (!this.SelectItem.DATETIME_VALUE3_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.DATETIME_VALUE3_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.DATETIME_VALUE3_DESC}")" CssClassAppend="py-2 col-md-12">
                         <Control>
@@ -188,7 +188,7 @@
                         </Control>
                     </FieldControl>
                 }
-                @if (!this.SelectItem.DATETIME_VALUE4_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.DATETIME_VALUE4_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.DATETIME_VALUE4_DESC}")" CssClassAppend="py-2 col-md-12">
                         <Control>
@@ -198,7 +198,7 @@
                         </Control>
                     </FieldControl>
                 }
-                @if (!this.SelectItem.DATETIME_VALUE5_DESC.IsNullOrEmpty())
+                @if (!string.IsNullOrEmpty(this.SelectItem.DATETIME_VALUE5_DESC))
                 {
                     <FieldControl Label="@($"{this.SelectItem.DATETIME_VALUE5_DESC}")" CssClassAppend="py-2 col-md-12">
                         <Control>
